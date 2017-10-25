@@ -1,6 +1,6 @@
 'use strict';
 
-if (process.env.NODE_ENV && !/^dev/i.test(process.env.NODE_ENV)) {
+if (process.env.NODE_ENV && /^dev/i.test(process.env.NODE_ENV)) {
     const md = require('module');
     const originalWrap = md.wrap,
         cRe = /^(\s*)(.*?)(\s*)$/gi,
