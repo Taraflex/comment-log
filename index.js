@@ -1,6 +1,6 @@
 'use strict';
 
-if (process.env.NODE_ENV && /^dev/i.test(process.env.NODE_ENV)) {
+if (process.env.NODE_ENV && !/^dev/i.test(process.env.NODE_ENV)) {
     const md = require('module');
     const originalWrap = md.wrap,
         cRe = /^(\s*)(.*?)(\s*)$/gi,
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV && /^dev/i.test(process.env.NODE_ENV)) {
             comment = comment.split('->').map(s => s.replace(cRe, (all, spaceBefore, group, spaceAfter) => {
                 return group ? `${spaceBefore}try{console.warn('[${escapeCode(group)}]:',${group},'\\n'+new Error().stack.match(__stack_re__).join('\\n'))}catch(___){console.error(___)}${spaceAfter}` : all;
             })).join('');
-            return `${line};{ const __stack_re__ = /^.*?\\(.*?[/\\\\].*?:\\d+:\\d+\\)$/gim; ${comment} }`;
+            return `${line};{ const __stack_re__ = /^.*?\\((.*?[/\\\\]){2,}.*?:\\d+:\\d+\\)$/gim; ${comment} }`;
         }));
     });
 }

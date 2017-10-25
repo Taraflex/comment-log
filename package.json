@@ -1,6 +1,6 @@
 {
   "name": "comment-log",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Taraflex/comment-log.git"
   },
-  "keywords": [    
+  "keywords": [
     "logging",
     "debugging",
     "comment",
